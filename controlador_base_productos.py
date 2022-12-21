@@ -38,21 +38,3 @@ class control_BP():
         conexion=Conexion_BD(self.__bd)
         conexion.consulta(f"DELETE FROM producto WHERE id_producto= {id}")
         conexion.cerrar()
-        
-con_prod=control_BP()
-
-con_prod.insert(19,"Melon",)
-con_prod.insert(18,"sandia")
-con_prod.insert(20,"Wisky")
-
-filas=  con_prod.select()
-for fila in filas:
-    print(fila)
-
-cantidad = int(input("Ingrese la cantidad para buscar: "))
-filas=  con_prod.select_menor_a(cantidad)
-for fila in filas:
-    print(fila)
-
-con_prod.update_precio(3,750)
-con_prod.eliminar(2)
