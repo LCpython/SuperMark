@@ -28,3 +28,6 @@ class control_BP():
         conexion=Conexion_BD(self.__bd)
         conexion.consulta(f"DELETE FROM name usuario WHERE id_usuario= {id}")
         conexion.cerrar()
+        
+        
+    
