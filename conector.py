@@ -9,7 +9,7 @@ class Conexion_BD():
     def consulta(self, consulta):
         data=None
         if consulta.upper().startswith("SELECT"):
-            data= self.cursor.execute(consulta)
+            data= self.cursor.execute(f"SELECT nombre,")
         else:
             self.cursor.execute(consulta)
             self.commit()
