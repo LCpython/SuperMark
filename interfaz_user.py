@@ -6,6 +6,7 @@ lp = lambda: os.system("cls")
 class menu():
       def __init__(self,main_menu):
             conexion=Conexion_BD("base_datos0.db")
+            
             self.main_menu=main_menu
             main_menu= print("------------------SuperMark_v0.1---------------------\n"
                         "-----------------------------------------------------\n"
