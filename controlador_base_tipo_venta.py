@@ -3,6 +3,13 @@ from conector import Conexion_BD
 class control_BP():
     def __init__(self):
         self.__bd="C:\\Users\\LUCAS\\Desktop\\Proyecto de programacion\\base_datos(LC)\\base_datos0.db"
+    
+    
+    def productos(self,id_producto,producto,precio_producto):
+     conexion= Conexion_BD()
+     conexion.consulta(f"INSERT INTO Tabla_Prod() VALUES {producto,precio_producto,id_producto};")
+     conexion.commit()
+     conexion.cerrar()
 
 
     def select(self):
