@@ -1,5 +1,4 @@
-import interfaz_user
-from controlador_base_usuario import Con_Cliente    
+from interfaz_user import Con_Cliente
 from controlador_base_productos import control_BP
 
 
