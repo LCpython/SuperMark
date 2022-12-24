@@ -10,11 +10,11 @@ class Conexion_BD():
         data=None
         
         if consulta.upper().startswith("SELECT"):
-<<<<<<< HEAD
+
             data= self.cursor.execute(f"SELECT * FROM name_usuario")
-=======
+
             data= self.cursor.execute(f"SELECT name_usuario,")
->>>>>>> 8e23d743c1a835045aec6e5c5e1d5ab2314841eb
+
         else:
             self.cursor.execute(consulta)
             self.commit()

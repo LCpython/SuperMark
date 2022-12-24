@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 from interfaz_user import Con_Cliente
 from controlador_base_productos import control_BP
 
