@@ -3,6 +3,7 @@ from conector import Conexion_BD
 class control_BP():
     def __init__(self):
         self.__bd="C:\\Users\\LUCAS\\Desktop\\Proyecto de programacion\\base_datos(LC)\\base_datos0.db"
+        self.conexion=Conexion_BD(self.__bd)
 
 
     def select(self):
@@ -29,6 +30,8 @@ class control_BP():
         conexion.consulta(f"INSERT INTO producto( producto_precio) VALUES {precio};")
         conexion.cerrar()
         
+    
+        
     def update_precio(self,id,precio):
         conexion=Conexion_BD(self.__bd)
         conexion.consulta(f"UPDATE producto SET producto_precio= {precio} WHERE id_producto= {id}")
@@ -39,5 +42,12 @@ class control_BP():
         conexion.consulta(f"DELETE FROM producto WHERE id_producto= {id}")
         conexion.cerrar()
 
+    def mostrar(self):  
+        sql="SELECT * FROM producto"
+        self.cursor.execute(sql)
+        items =self.cursor.fetchall()
+        for i in items:
+            print('base_producto', i[2])
 
-
+b_p=control_BP()
+b_p.mostrar

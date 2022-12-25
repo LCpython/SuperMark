@@ -25,5 +25,5 @@ class Conexion_BD():
 
     def cerrar(self):
         self.conexion.close()   
-        
-    
+      
+   
