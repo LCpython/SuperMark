@@ -16,6 +16,9 @@ class admin(Con_Cliente):
     def __init__(self,admin_user,admin_passw,):
         self.admin_user=admin_user
         self.admin_passw=admin_passw
+        self.conexion = sqlite3.connect("base_datos0.db")
+        self.conexion_consulta=("SELECT * name_usuario=? WHERE base_usuario=?")
+        
 class Producto():
     def __init__(self,menu_producto):
         self.menu_producto = menu_producto

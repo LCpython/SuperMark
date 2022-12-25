@@ -25,5 +25,8 @@ class Conexion_BD():
 
     def cerrar(self):
         self.conexion.close()   
+        
+conx=Conexion_BD
+conx.consulta
       
    
