@@ -2,14 +2,15 @@
 from interfaz_user import Con_Cliente
 from interfaz_user import Tipo_Usuario
 from controlador_base_productos import control_BP
+from tabulate import tabulate
 
-precio=control_BP
 
 bd = "C:\\Users\\LUCAS\\Desktop\\Proyecto de programacion\\base_datos(LC)\\base_datos0.db"
 
 import sqlite3
 conn = sqlite3.connect("base_datos0.db")
 cursor = conn.cursor()
+
 class admin(Con_Cliente):
     conexion=(bd)
     def __init__(self,admin_user,admin_passw,):
@@ -18,8 +19,16 @@ class admin(Con_Cliente):
 class Producto():
     def __init__(self,menu_producto):
         self.menu_producto = menu_producto
-        conexion=(bd)
-        conexion_consulta=(control_BP)
+        self.conexion = sqlite3.connect("base_datos0.db")
+        self.conexion_consulta=("SELECT * producto=? WHERE base_producto=?")
+        
+    def mostrar(self):  
+        sql="SELECT * FROM producto where base_producto=? "
+        self.cursor.execute(sql)
+        items =self.cursor.fetchall()
+        for i in items:
+            print("producto", i[2])
+        
     def select_producto(self,menu_producto,id_producto,precio_producto,producto,main_producto):
         self.id_producto=id_producto
         self.menu_producto=menu_producto
@@ -40,16 +49,10 @@ class editar(Producto):
 #Producto(menu_producto=True)
 producto = Producto(menu_producto=True)
 
-from tabulate import tabulate
 
-Inventario={
-    (1,'Leche entera 1Lt',125.25),
-    (2,'yogurt 1Lt',145.75),
-    (3,'queso chaqueño 1Lt',560.15),
-    (4,'queso ricota 1kg',900.55),
-    (5,'crema chantilli 1Lt',1050.25)
-}
-table = tabulate(Inventario, headers='keys', tablefmt='grid')
+        
+
+
 
 
 
@@ -58,7 +61,7 @@ class inventarios():
     conexion_consulta=(control_BP)
     
     def vender_Producto():
-        print(table)
+        print()
         Inventario=()
         cantidad=int(input("Cantidad de venta : "))
         if cantidad > Inventario :
@@ -68,14 +71,12 @@ class inventarios():
     
     
     def ver_Inventario(self):
-        cursor.execute
-        conexion=bd
-        consulta = conexion.consulta(f"SELECT * FROM producto")
-        data = consulta.fetchall()
-        conexion.cerrar()
-        cursor.close()                 
-         
-        return data
+        sql="SELECT * FROM producto where base_producto=? "
+        self.cursor.execute(sql)
+        items =self.cursor.fetchall()
+        for i in items:
+            print("producto", i[2])
+        
     
     
     while True:
@@ -98,13 +99,13 @@ class inventarios():
             elif opcion == None:
                 pass
             elif opcion == 2:
-                print(table)
+                ver_Inventario()
             else:
                 break
     print("Gracias por su compra")
 
 def vender_Producto():
-        print(table)
+        print()
         print("ingrese la cantidad que desea vender")
         cantidad=int(input("Ingrese la cantida: "))
         if cantidad<=inventario:
@@ -118,7 +119,7 @@ def vender_Producto():
             print()
  
 def reabastecer():
-    global inventario
+    inventario
     cantidad=int(input("Ingrese la cantidad que desea ingresar: "))
     inventario=inventario+cantidad
     print("La cantidad se ha ingresado con exito")
@@ -132,8 +133,14 @@ def reabastecer():
     
     
     
-    
-    
+#Inventario={
+#    (1,'Leche entera 1Lt',125.25),
+#    (2,'yogurt 1Lt',145.75),
+#    (3,'queso chaqueño 1Lt',560.15),
+#    (4,'queso ricota 1kg',900.55),
+#    (5,'crema chantilli 1Lt',1050.25)
+#} 
+#table = tabulate(Inventario, headers='keys', tablefmt='grid')    
     
 
 
