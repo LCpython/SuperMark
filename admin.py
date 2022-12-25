@@ -1,5 +1,6 @@
 
 from interfaz_user import Con_Cliente
+from interfaz_user import Tipo_Usuario
 from controlador_base_productos import control_BP
 
 precio=control_BP
@@ -17,8 +18,8 @@ class admin(Con_Cliente):
 class Producto():
     def __init__(self,menu_producto):
         self.menu_producto = menu_producto
-    conexion=(bd)
-    conexion_consulta=(control_BP)
+        conexion=(bd)
+        conexion_consulta=(control_BP)
     def select_producto(self,menu_producto,id_producto,precio_producto,producto,main_producto):
         self.id_producto=id_producto
         self.menu_producto=menu_producto
@@ -40,6 +41,7 @@ class editar(Producto):
 producto = Producto(menu_producto=True)
 
 from tabulate import tabulate
+
 Inventario={
     (1,'Leche entera 1Lt',125.25),
     (2,'yogurt 1Lt',145.75),
@@ -57,6 +59,7 @@ class inventarios():
     
     def vender_Producto():
         print(table)
+        Inventario=()
         cantidad=int(input("Cantidad de venta : "))
         if cantidad > Inventario :
             print("No tienes productos suficientes")
@@ -135,11 +138,3 @@ def reabastecer():
 
 
 
-
-#Inventario={
-#    (1,'Leche entera 1Lt',125.25),\
-#    (2,'yogurt 1Lt',145.75),\
-#    (3,'queso chaqueño 1Lt',560.15),\
-#    (4,'queso ricota 1kg',900.55),\
-#    (5,'crema chantilli 1Lt',1050.25)\
-#            }
