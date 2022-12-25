@@ -2,6 +2,7 @@
 from interfaz_user import Con_Cliente
 from controlador_base_productos import control_BP
 
+precio=control_BP
 
 bd = "C:\\Users\\LUCAS\\Desktop\\Proyecto de programacion\\base_datos(LC)\\base_datos0.db"
 
@@ -38,30 +39,30 @@ class editar(Producto):
 #Producto(menu_producto=True)
 producto = Producto(menu_producto=True)
 
-Inventario=(control_BP)
-#if inventario==1:
-#    conexion=db
-#    consulta = conexion.consulta("SELECT * FROM base_producto")
-#else:
-#    conexion=db
-#    consulta = conexion.consulta("SELECT * FROM base_producto")
-     
+from tabulate import tabulate
+Inventario={
+    (1,'Leche entera 1Lt',125.25),
+    (2,'yogurt 1Lt',145.75),
+    (3,'queso chaqueño 1Lt',560.15),
+    (4,'queso ricota 1kg',900.55),
+    (5,'crema chantilli 1Lt',1050.25)
+}
+table = tabulate(Inventario, headers='keys', tablefmt='grid')
+
+
+
 class inventarios():
     conexion=bd
     conexion_consulta=(control_BP)
     
     def vender_Producto():
-        global Inventario
+        Inventario=()
         cantidad=int(input("Cantidad de venta : "))
         if cantidad > Inventario :
             print("No tienes productos suficientes")
         else:
             Inventario -= cantidad
     
-    def Reabastecer():
-        global Inventario
-        cantidad=int(input("Cantidad: "))
-        Inventario +=cantidad
     
     def ver_Inventario(self):
         cursor.execute
@@ -79,8 +80,7 @@ class inventarios():
             print("""
             Menú
             [1] Vender producto
-            [2] Reabastecer
-            [3] Ver el inventario
+            [2] Ver el inventario
             [4] Salir
             """)
             opcion = int(input("¿Qué deseas hacer?: "))
@@ -91,16 +91,11 @@ class inventarios():
                 print("{} no es una opción válida".format(opcion) )
                 continue
             if opcion == 1:
-                cursor.execute
-                vender_Producto(+"SELECT * FROM 'producto'\n"
-                                +"SELECT * FROM 'precio_producto'\n")
-                cursor.close()  
+                Inventario=input("select",{id})
+            elif opcion == None:
+                pass
             elif opcion == 2:
-                    Reabastecer()
-            elif opcion == 3:
-                    cursor.execute
-                    ver_Inventario(f"SELECT * FROM 'producto'")
-                    cursor.close()  
+                print(table)
             else:
                 break
     print("Gracias por su compra")
@@ -124,49 +119,27 @@ def reabastecer():
     cantidad=int(input("Ingrese la cantidad que desea ingresar: "))
     inventario=inventario+cantidad
     print("La cantidad se ha ingresado con exito")
- 
- 
- 
- 
-
-        
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
 
-from interfaz_user import Con_Cliente
-from controlador_base_productos import control_BP
-
-
-db = "C:\\Users\\LUCAS\\Desktop\\Proyecto de programacion\\base_datos(LC)\\base_datos0.db"
-
-class admin(Con_Cliente):
-    conexion=(db)
-    def __init__(self,admin_user,admin_passw,):
-        self.admin_user=admin_user
-        self.admin_passw=admin_passw
-
-class Producto():
-    def __init__(self,menu_producto):
-        self.menu_producto = menu_producto
-    conexion=(db)
-    conexion_consulta=(control_BP)
-    def select_producto(self,menu_producto,id_producto,precio_producto,producto,main_producto):
-        self.id_producto=id_producto
-        self.menu_producto=menu_producto
-        self.precio_producto=precio_producto
-        self.producto=producto
-        self.main_producto=main_producto
-        menu_producto=print("-------------------SuperMark_v0.1---------------------\n"
-                            "------------------------------------------------------\n"
-                            "-------------------/Productos_Lista/------------------\n"
-                            "------------------------------------------------------\n")
-
-#Producto(menu_producto=True)
-producto = Producto(menu_producto=True)
 
 
 
-        
-        
-    
-
-        
+#Inventario={
+#    (1,'Leche entera 1Lt',125.25),\
+#    (2,'yogurt 1Lt',145.75),\
+#    (3,'queso chaqueño 1Lt',560.15),\
+#    (4,'queso ricota 1kg',900.55),\
+#    (5,'crema chantilli 1Lt',1050.25)\
+#            }
