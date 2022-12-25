@@ -56,7 +56,7 @@ class inventarios():
     conexion_consulta=(control_BP)
     
     def vender_Producto():
-        Inventario=()
+        print(table)
         cantidad=int(input("Cantidad de venta : "))
         if cantidad > Inventario :
             print("No tienes productos suficientes")
@@ -81,17 +81,17 @@ class inventarios():
             Menú
             [1] Vender producto
             [2] Ver el inventario
-            [4] Salir
+            [3] Salir
             """)
             opcion = int(input("¿Qué deseas hacer?: "))
         except ValueError:
             print("Favor de ingresar una opción válida")
         else:
-            if opcion < 1 or opcion > 4:
+            if opcion < 1 or opcion > 3:
                 print("{} no es una opción válida".format(opcion) )
                 continue
             if opcion == 1:
-                Inventario=input("select",{id})
+                vender_Producto()
             elif opcion == None:
                 pass
             elif opcion == 2:
@@ -101,7 +101,7 @@ class inventarios():
     print("Gracias por su compra")
 
 def vender_Producto():
-        global inventario
+        print(table)
         print("ingrese la cantidad que desea vender")
         cantidad=int(input("Ingrese la cantida: "))
         if cantidad<=inventario:
