@@ -1,4 +1,5 @@
 
+import sqlite3
 from interfaz_user import Con_Cliente
 from interfaz_user import Tipo_Usuario
 from controlador_base_productos import control_BP
@@ -7,7 +8,7 @@ from tabulate import tabulate
 
 bd = "C:\\Users\\LUCAS\\Desktop\\Proyecto de programacion\\base_datos(LC)\\base_datos0.db"
 
-import sqlite3
+
 conn = sqlite3.connect("base_datos0.db")
 cursor = conn.cursor()
 
@@ -52,82 +53,73 @@ class editar(Producto):
 #Producto(menu_producto=True)
 producto = Producto(menu_producto=True)
 
-
-        
-
-
-
-
-
 class inventarios():
-    conexion=bd
-    conexion_consulta=(control_BP)
-    
-    def vender_Producto():
-        print()
-        Inventario=()
-        cantidad=int(input("Cantidad de venta : "))
-        if cantidad > Inventario :
-            print("No tienes productos suficientes")
-        else:
-            Inventario -= cantidad
-    
-    
+    def __init__(self, bd, control_BP):
+        self.conexion = bd
+        self.conexion_consulta = control_BP
+        self.cursor = bd.cursor()
+
     def ver_Inventario(self):
-        sql="SELECT * FROM producto where base_producto=? "
+        sql = "SELECT * FROM producto WHERE base_producto=?"
+        self.cursor.execute(sql, (self.conexion_consulta,))
+        items = self.cursor.fetchall()
+        print(f"Number of products: {len(items)}")
+        for item in items:
+            print(f"Product: {item[2]}")
+    
+    def vender_Producto(self):
+        sql="SELECT * FROM precio_producto WHERE base_producto=?"
         self.cursor.execute(sql)
         items =self.cursor.fetchall()
         for i in items:
-            print("producto", i[2])
+            print("precios:", i[3])
         
-    
-    
-    while True:
-        try:
-            print("""
-            Menú
-            [1] Vender producto
-            [2] Ver el inventario
-            [3] Salir
-            """)
-            opcion = int(input("¿Qué deseas hacer?: "))
-        except ValueError:
-            print("Favor de ingresar una opción válida")
-        else:
-            if opcion < 1 or opcion > 3:
-                print("{} no es una opción válida".format(opcion) )
-                continue
-            if opcion == 1:
-                vender_Producto()
-            elif opcion == None:
-                pass
-            elif opcion == 2:
-                ver_Inventario()
-            else:
-                break
-    print("Gracias por su compra")
+    def reabastecer(self):
+        sql = "SELECT * FROM cantidad_producto WHERE base_producto=?"
+        self.cursor.execute(sql)
+        items =self.cursor.fetchall()
+        for i in items:
+            print("cantidad.P:",i[4])
 
-def vender_Producto():
-        print()
-        print("ingrese la cantidad que desea vender")
-        cantidad=int(input("Ingrese la cantida: "))
-        if cantidad<=inventario:
-                inventario=inventario-cantidad
-                print ("Cantidad existente en el inventario: ",inventario)
-        elif inventario==0 and cantidad>inventario:
-            print ("Debe reabastecer el inventario")
-            print()
-        elif cantidad> inventario:
-            print ("No tiene disponibilidad suficiente del producto")
-            print()
- 
-def reabastecer():
-    inventario
-    cantidad=int(input("Ingrese la cantidad que desea ingresar: "))
-    inventario=inventario+cantidad
-    print("La cantidad se ha ingresado con exito")
-    
-    
+connection = sqlite3.connect('database.db')
+
+cursor = connection.cursor()
+
+cursor.execute("SELECT * FROM producto WHERE base_producto")
+results = cursor.fetchall()
+print(results)
+
+inventory = inventarios(connection, control_BP)
+
+while True:
+    try:
+        print("""
+        Menú
+        [1] Vender producto
+        [2] Ver el inventario
+        [3] Reabastecer
+        [4] Salir
+        """)
+        opcion = int(input("¿Qué deseas hacer?: "))
+    except ValueError:
+        print("Favor de ingresar una opción válida")
+    else:
+        if opcion < 1 or opcion > 4:
+            print("{} no es una opción válida".format(opcion) )
+            continue
+        if opcion == 1:
+            inventory.vender_Producto()
+        elif opcion == 2:
+            inventory.ver_Inventario()
+        elif opcion == 3:
+            inventory.reabastecer()
+        else:
+            break
+
+print("Gracias por su compra")
+
+cursor.close()
+connection.close()
     
     
     
