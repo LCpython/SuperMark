@@ -38,3 +38,6 @@ class control_BP():
         conexion=Conexion_BD(self.__bd)
         conexion.consulta(f"DELETE FROM producto WHERE id_producto= {id}")
         conexion.cerrar()
+
+
+
